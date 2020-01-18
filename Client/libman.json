@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "@progress/kendo-theme-bootstrap@latest",
+      "destination": "wwwroot/telerik-themes/bootstrap",
+      "files": [
+        "dist/all.css"
+      ]
+    }
+  ]
+}
