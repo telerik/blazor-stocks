@@ -25,10 +25,18 @@
     <div class="col d-none d-md-block"></div>
 </div>
 <div class="row stocks-grid">
-    <TelerikGrid Data="@Data" Sortable="true" SelectionMode="GridSelectionMode.Single" SelectedItems="@SelectedStocks" SelectedItemsChanged="@((IEnumerable<Stock> stocks) => OnSelect(stocks))">
+    <TelerikGrid Data="@Data" Sortable="true">
         <GridColumns>
-            <GridCheckboxColumn SelectAll="false" Width="40px" />
-            <GridColumn Field="Symbol" Title="Symbol" />
+            <GridColumn Field="Symbol">
+                <Template>
+                    @{
+                        var stock = context as Stock;
+                        <input type="checkbox" class="k-checkbox" id="@( "cb" + stock.Symbol )"
+                               checked="@(stock == SelectedStock)" @onclick="@(() => OnSelect(stock))" />
+                        <label class="k-checkbox-label" for="@( "cb" + stock.Symbol )">@stock.Symbol</label>
+                    }
+                </Template>
+            </GridColumn>
             <GridColumn Field="Name" Title="Name" />
             <GridColumn Field="Price" Title="Price">
                 <Template>

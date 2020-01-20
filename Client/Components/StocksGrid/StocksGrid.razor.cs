@@ -15,17 +15,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         [Inject] StocksListService StocksListService { get; set; }
         [Inject] IJSRuntime JSRuntime { get; set; }
         [Parameter] public Stock SelectedStock { get; set; }
-        IEnumerable<Stock> SelectedStocks
-        {
-            get
-            {
-                if (SelectedStock != null)
-                {
-                    return new List<Stock>() { SelectedStock };
-                }
-                return Enumerable.Empty<Stock>();
-            }
-        }
         [Parameter] public EventCallback<Stock> SelectedStockChanged { get; set; }
         [Parameter] public List<Stock> Data { get; set; }
         [Parameter] public List<Stock> UncategorizedStocks { get; set; }
@@ -37,9 +26,9 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         bool LargerThanPhone { get; set; }
         bool LargerThanTablet { get; set; }
 
-        async Task OnSelect(IEnumerable<Stock> selectedStocks)
+        async Task OnSelect(Stock currStock)
         {
-            SelectedStock = selectedStocks.FirstOrDefault();
+            SelectedStock = currStock;
             await SelectedStockChanged.InvokeAsync(SelectedStock);
         }
 
