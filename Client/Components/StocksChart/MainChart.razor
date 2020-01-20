@@ -45,12 +45,7 @@
     <ChartLegend Visible="false" />
 </TelerikChart>
 
-@logger
-
 @code{
-
-    MarkupString logger { get; set; }
-
     [Parameter] public ChartSeriesType MainChartType { get; set; }
     [Parameter] public List<StockIntervalDetails> ChartData { get; set; }
     [Parameter] public int LabelStep { get; set; }
@@ -67,18 +62,16 @@
         return (long)Math.Round(ChartData.Max(d => d.Volume) * 6);
     }
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        AdjustLabelStep(null);
-
-        base.OnParametersSet();
+        await AdjustLabelStep(null);
+        await base.OnParametersSetAsync();
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            // Subscribe to the OnResized event. This will do work when the browser is resized.
             listener.OnResized += ResizeChart;
         }
     }
@@ -88,12 +81,12 @@
         if (ChartRef != null && LastViewPortWidth != window.Width)
         {
             LastViewPortWidth = window.Width;
-            AdjustLabelStep(window.Width);
+            await AdjustLabelStep(window.Width);
             ChartRef.Refresh();
         }
     }
 
-    async void AdjustLabelStep(int? WindowWidth)
+    async Task AdjustLabelStep(int? WindowWidth)
     {
         if (ChartData.Any())
         {

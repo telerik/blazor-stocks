@@ -42,7 +42,7 @@
                 <Template>
                     @{
                         var stock = context as Stock;
-                        <strong>@(SelectedCurrency?.Sign + stock.Price)</strong>
+                        <strong>@(SelectedCurrency?.Sign + stock.Price * SelectedCurrency.Multiplier)</strong>
                     }
                 </Template>
             </GridColumn>
