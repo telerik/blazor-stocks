@@ -28,8 +28,11 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
 
         async Task OnSelect(Stock currStock)
         {
-            SelectedStock = currStock;
-            await SelectedStockChanged.InvokeAsync(SelectedStock);
+            if (!string.Equals(currStock.Symbol, SelectedStock?.Symbol))
+            {
+                SelectedStock = currStock;
+                await SelectedStockChanged.InvokeAsync(SelectedStock);
+            }
         }
 
         async Task OnAdd(string symbol)
