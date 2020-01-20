@@ -59,14 +59,8 @@
             }
 
         <CascadingValue Value="@SelectedCurrency">
-            @if (!ProfileVisible)
-            {
-                @Body
-            }
-            else
-            {
-                <UserProfile @bind-IsProfileVisible="@ProfileVisible" />
-            }
+            @Body
+            <UserProfile @bind-IsProfileVisible="@ProfileVisible" />
         </CascadingValue>
         </div>
     </main>
