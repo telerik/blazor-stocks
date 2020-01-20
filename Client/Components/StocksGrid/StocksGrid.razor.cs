@@ -7,13 +7,14 @@ using BlazorFinancePortfolio.Models;
 using BlazorFinancePortfolio.Helpers;
 using BlazorFinancePortfolio.Services;
 using Microsoft.JSInterop;
+using BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Components.StocksGrid
 {
     public partial class StocksGrid : IDisposable
     {
         [Inject] StocksListService StocksListService { get; set; }
-        [Inject] IJSRuntime JSRuntime { get; set; }
+        [Inject] ResizeListener listener { get; set; }
         [Parameter] public Stock SelectedStock { get; set; }
         [Parameter] public EventCallback<Stock> SelectedStockChanged { get; set; }
         [Parameter] public List<Stock> Data { get; set; }
@@ -25,6 +26,7 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
 
         bool LargerThanPhone { get; set; }
         bool LargerThanTablet { get; set; }
+        int LastViewPortWidth { get; set; }
 
         async Task OnSelect(Stock currStock)
         {
@@ -72,7 +74,7 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
 
         protected override async Task OnInitializedAsync()
         {
-            await ToggleColumns();
+            await ToggleColumnsInitial();
 
             Data = await StocksListService.GetStocks(true);
 
@@ -88,28 +90,39 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         {
             if (firstRender)
             {
-                WindowResizeDispatcher.WindowResize += ToggleColumns;
+                listener.OnResized += ToggleColumnsOnResize;
             }
 
             await base.OnAfterRenderAsync(firstRender);
         }
 
-        async Task ToggleColumns()
+        async void ToggleColumnsOnResize(object _, BrowserWindowSize window)
         {
-            if (WindowResizeDispatcher.WindowWidth == null)
+            if (LastViewPortWidth != window.Width)
             {
-                WindowResizeDispatcher.WindowWidth = await JSRuntime.InvokeAsync<int>("getWindowWidth");
+                LastViewPortWidth = window.Width;
+                ToggleColumnsFlags(window.Width);
             }
+        }
 
-            LargerThanPhone = WindowResizeDispatcher.WindowWidth > 768;
-            LargerThanTablet = WindowResizeDispatcher.WindowWidth > 992;
+        async Task ToggleColumnsInitial()
+        {
+            BrowserWindowSize currSize = await listener.GetBrowserWindowSize();
+            LastViewPortWidth = currSize.Width;
+            ToggleColumnsFlags(currSize.Width);
+        }
+
+        void ToggleColumnsFlags(int browserWidth)
+        {
+            LargerThanPhone = browserWidth > 768;
+            LargerThanTablet = browserWidth > 992;
 
             StateHasChanged();
         }
 
         public void Dispose()
         {
-            WindowResizeDispatcher.WindowResize -= ToggleColumns;
+            listener.OnResized -= ToggleColumnsOnResize;
         }
     }
 }

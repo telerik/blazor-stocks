@@ -34,7 +34,7 @@ namespace BlazorFinancePortfolio.Services
             List<RealTimeData> data = new List<RealTimeData>();
             decimal price = (decimal)(Rnd.NextDouble() * 100 + 10);
 
-            for (int i = 1; i < 10001; i++)
+            for (int i = 1; i < 1001; i++)
             {
                 string symbol = GetSymbol();
                 data.Add(new RealTimeData

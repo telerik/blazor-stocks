@@ -8,6 +8,7 @@ using BlazorFinancePortfolio.Helpers;
 using BlazorFinancePortfolio.Services;
 using Telerik.Blazor.Components;
 using Microsoft.JSInterop;
+using BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Pages
 {
@@ -15,7 +16,7 @@ namespace BlazorFinancePortfolio.Client.Pages
     {
         [Inject] NavigationManager NavManager { get; set; }
         [Inject] StocksListService StocksListService {get;set;}
-        [Inject] IJSRuntime JSRuntime { get; set; }
+        [Inject] ResizeListener listener { get; set; }
         [CascadingParameter] public Currency SelectedCurrency { get; set; }
 
         [Parameter] public bool IsProfileVisible { get; set; }
@@ -25,6 +26,8 @@ namespace BlazorFinancePortfolio.Client.Pages
         TelerikChart ChartRef { get; set; }
         bool ChartLegendVisible { get; set; } = true;
 
+        int LastViewPortWidth { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             if (IsCurrentPageProfile())
@@ -33,11 +36,19 @@ namespace BlazorFinancePortfolio.Client.Pages
             }
 
             Stocks = await StocksListService.GetStocks(true);
-
-            await ResizeChart();
-            WindowResizeDispatcher.WindowResize += ResizeChart;
+            await ResizeChart(null);
 
             await base.OnInitializedAsync();
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                listener.OnResized += WindowResizeHandler;
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         async void CloseProfile()
@@ -59,14 +70,24 @@ namespace BlazorFinancePortfolio.Client.Pages
             return currPage.StartsWith("profile");
         }
 
-        async Task ResizeChart()
+        async void WindowResizeHandler(object _, BrowserWindowSize window)
         {
-            if (WindowResizeDispatcher.WindowWidth == null)
+            if (LastViewPortWidth != window.Width)
             {
-                WindowResizeDispatcher.WindowWidth = await JSRuntime.InvokeAsync<int>("getWindowWidth");
+                LastViewPortWidth = window.Width;
+                await ResizeChart(window.Width);
             }
+        }
 
-            if (WindowResizeDispatcher.WindowWidth <= 992)
+        async Task ResizeChart(int? windowWidth)
+        {
+            if(windowWidth == null)
+            {
+                BrowserWindowSize currSize = await listener.GetBrowserWindowSize();
+                windowWidth = currSize.Width;
+                LastViewPortWidth = windowWidth.Value;
+            }
+            if (windowWidth <= 992)
             {
                 ChartLegendVisible = false;
             }
@@ -84,7 +105,7 @@ namespace BlazorFinancePortfolio.Client.Pages
 
         public void Dispose()
         {
-            WindowResizeDispatcher.WindowResize -= ResizeChart;
+            listener.OnResized -= WindowResizeHandler;
         }
     }
 }

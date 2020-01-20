@@ -5,16 +5,15 @@ const swInstallEvent = 'install';
 const swInstalledEvent = 'installed';
 const swActivateEvent = 'activate';
 const staticCachePrefix = 'blazor-cache-v';
-const staticCacheName = 'blazor-cache-v21';
+const staticCacheName = 'blazor-cache-v22';
 const requiredFiles = [
 "/blazor-stocks-portfolio/_framework/blazor.boot.json",
 "/blazor-stocks-portfolio/_framework/blazor.webassembly.js",
 "/blazor-stocks-portfolio/_framework/wasm/mono.js",
 "/blazor-stocks-portfolio/_framework/wasm/mono.wasm",
 "/blazor-stocks-portfolio/_framework/_bin/BlazorFinancePortfolio.Client.dll",
-"/blazor-stocks-portfolio/_framework/_bin/BlazorFinancePortfolio.Client.pdb",
 "/blazor-stocks-portfolio/_framework/_bin/BlazorFinancePortfolio.Shared.dll",
-"/blazor-stocks-portfolio/_framework/_bin/BlazorFinancePortfolio.Shared.pdb",
+"/blazor-stocks-portfolio/_framework/_bin/BlazorSize.dll",
 "/blazor-stocks-portfolio/_framework/_bin/Microsoft.AspNetCore.Blazor.dll",
 "/blazor-stocks-portfolio/_framework/_bin/Microsoft.AspNetCore.Components.dll",
 "/blazor-stocks-portfolio/_framework/_bin/Microsoft.AspNetCore.Components.Forms.dll",
@@ -77,7 +76,6 @@ const requiredFiles = [
 "/blazor-stocks-portfolio/images/user.jpg",
 "/blazor-stocks-portfolio/index.html",
 "/blazor-stocks-portfolio/telerik-themes/bootstrap/dist/all.css",
-"/blazor-stocks-portfolio/windowResizeHandler.js",
 "/blazor-stocks-portfolio/ServiceWorkerRegister.js",
 "/blazor-stocks-portfolio/manifest.json"
 ];
