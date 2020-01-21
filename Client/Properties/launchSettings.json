@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65065/blazor-stocks-portfolio/",
+      "applicationUrl": "http://localhost:65065/blazor-financial-portfolio/",
       "sslPort": 44340
     }
   },
@@ -21,7 +21,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5001/blazor-stocks-portfolio/;http://localhost:5000/blazor-stocks-portfolio/"
+      "applicationUrl": "https://localhost:5001/blazor-financial-portfolio/;http://localhost:5000/blazor-financial-portfolio/"
     }
   }
 }
