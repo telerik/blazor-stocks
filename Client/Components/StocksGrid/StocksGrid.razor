@@ -7,10 +7,10 @@
         {
             <TelerikDropDownList Data="@UncategorizedStocks"
                                  Value="@SelectedValue"
-                                 ValueChanged="@((string v) =>OnAdd(v))"
+                                 OnChange="OnAdd"
                                  TextField="Name"
                                  ValueField="Symbol"
-                                 DefaultItem="@DefailtUncategorizedStock"
+                                 DefaultText="+ Add new stock"
                                  PopupWidth="270px"
                                  Width="165px"
                                  Class="ddl-no-bg">

@@ -22,7 +22,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         [CascadingParameter] public Currency SelectedCurrency { get; set; }
 
         string SelectedValue { get; set; }
-        Stock DefailtUncategorizedStock { get; set; } = new Stock() { Name = "+ Add new stock", Symbol = null };
 
         bool LargerThanPhone { get; set; }
         bool LargerThanTablet { get; set; }
@@ -37,8 +36,9 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
             }
         }
 
-        async Task OnAdd(string symbol)
+        async Task OnAdd(object selectedSymbol)
         {
+            string symbol = selectedSymbol.ToString();
             if (!string.IsNullOrWhiteSpace(symbol))
             {
                 var stock = UncategorizedStocks.FirstOrDefault(s => s.Symbol == symbol);
@@ -51,7 +51,7 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
                     var newUncategorizedStocks = new List<Stock>(UncategorizedStocks);
                     UncategorizedStocks = newUncategorizedStocks;
 
-                    SelectedValue = null;
+                    SelectedValue = string.Empty;
                 }
             }
         }
