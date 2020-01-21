@@ -65,11 +65,11 @@
                         <ChartSeriesItems>
                             <ChartSeries Type="ChartSeriesType.Pie" Data="@Stocks"
                                          Field="@nameof(Stock.Price)" CategoryField="@nameof(Stock.Symbol)">
-                                <ChartSeriesLabels Template="@( $"#=category#\n{SelectedCurrency.Sign}#=value#" )" Visible="true" />
+                                <ChartSeriesLabels Template="@( $"#=category#\n{SelectedCurrency.Sign}#=value#" )" Visible="@ChartLabelsVisible" />
                             </ChartSeries>
                         </ChartSeriesItems>
 
-                        <ChartLegend Position="ChartLegendPosition.Bottom" Visible="@ChartLegendVisible">
+                        <ChartLegend Position="ChartLegendPosition.Bottom">
                         </ChartLegend>
                     </TelerikChart>
                 </div>

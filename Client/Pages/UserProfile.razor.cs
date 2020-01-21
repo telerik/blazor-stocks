@@ -24,7 +24,7 @@ namespace BlazorFinancePortfolio.Client.Pages
 
         public List<Stock> Stocks { get; set; }
         TelerikChart ChartRef { get; set; }
-        bool ChartLegendVisible { get; set; } = true;
+        bool ChartLabelsVisible { get; set; } = true;
 
         int LastViewPortWidth { get; set; }
 
@@ -89,11 +89,11 @@ namespace BlazorFinancePortfolio.Client.Pages
             }
             if (windowWidth <= 992)
             {
-                ChartLegendVisible = false;
+                ChartLabelsVisible = false;
             }
             else
             {
-                ChartLegendVisible = true;
+                ChartLabelsVisible = true;
             }
             StateHasChanged();
 
