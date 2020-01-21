@@ -1,6 +1,6 @@
 # Blazor PWA App - Stocks Portfolio 
 
-This sample application demonstrates one way to implement a PWA ([Progressive Web Application](https://developers.google.com/web/progressive-web-apps)) functionality in a Blazor WASM app. It is live at [https://demos.telerik.com/blazor-stocks-portfolio/](https://demos.telerik.com/blazor-stocks-portfolio/)
+This sample application demonstrates one way to implement a PWA ([Progressive Web Application](https://developers.google.com/web/progressive-web-apps)) functionality in a Blazor WASM app. It is live at [https://demos.telerik.com/blazor-financial-portfolio](https://demos.telerik.com/blazor-financial-portfolio)
 
 To generate the needed PWA assets, the [Blazor.PWA.MSBuild by SQL-MisterMagoo](https://github.com/SQL-MisterMagoo/Blazor.PWA.MSBuild) is used in this example. You can write them manually, use a different tool, or even see if Microsoft will prepare a ready-made PWA project template for Blazor.
 
