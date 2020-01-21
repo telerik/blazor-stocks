@@ -661,3 +661,8 @@ stocks-grid .k-grid .k-grid-header th.k-header {
         display: none
     }
 }
+
+/* workaround for an issue with the Today buttons on the pickers (#713). Also, they are not very useful in this app because the data comes up only until Today */
+.k-today {
+    visibility: hidden;
+}
