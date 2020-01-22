@@ -96,7 +96,6 @@
         if (ChartData.Any())
         {
             var chartDataTimeRangeInMs = (long)(ChartData.Last().Date - ChartData.First().Date).TotalMilliseconds;
-            long currDur = (IntervalFilter != null && IntervalFilter.Duration != 0) ? IntervalFilter.Duration : Constants.MS_1_HOUR;
             int currStep = (int)(chartDataTimeRangeInMs / IntervalFilter.Duration / Constants.MaxLabelStepsInStocksChart);
             if (WindowWidth == null)
             {
