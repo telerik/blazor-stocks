@@ -10,7 +10,7 @@
     <ManifestShortName>My Stocks</ManifestShortName>
     <ManifestLongName>My Blazor Stocks PWA</ManifestLongName>
     <ServiceWorkerForce>true</ServiceWorkerForce>
-    <ServiceWorkerCacheVersion>23</ServiceWorkerCacheVersion>
+    <ServiceWorkerCacheVersion>24</ServiceWorkerCacheVersion>
     <ServiceWorkerRegisterInstallableType>installable-blazor</ServiceWorkerRegisterInstallableType>
     <ServiceWorkerBlazorAssembly>BlazorFinancePortfolio.Client</ServiceWorkerBlazorAssembly>
     <ServiceWorkerBlazorInstallMethod>InstallPwaPrompt</ServiceWorkerBlazorInstallMethod>

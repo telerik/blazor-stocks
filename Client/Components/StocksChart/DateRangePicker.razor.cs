@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorFinancePortfolio.Helpers;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
 {
     public partial class DateRangePicker
     {
-        [Parameter] public DateTime StartDate { get; set; } = DateTime.Now.Date;
+        [Parameter] public DateTime StartDate { get; set; } = DateTime.Now.Date.AddDays(-4);
         [Parameter] public DateTime EndDate { get; set; } = DateTime.Now.Date;
-        [Parameter] public DateTime MinDate { get; set; } = DateTime.Now.AddMonths(-2).Date;
-        [Parameter] public DateTime MaxDate { get; set; } = DateTime.Now.Date;
+        [Parameter] public DateTime MinDate { get; set; } = Constants.GetMinDate();
+        [Parameter] public DateTime MaxDate { get; set; } = Constants.GetMaxDate();
         [Parameter] public EventCallback<Tuple<DateTime, DateTime>> SelectionChanged { get; set; }
         string WrongRangeMessage = "Start date must be before end date. We reset the selection, try again.";
         bool ShowErrorMessage { get; set; }
@@ -49,26 +50,42 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
 
         async void StartChanged(DateTime userChoice)
         {
+            //workaround for #562
+            if(userChoice < MinDate)
+            {
+                StartDate = MinDate.Date;
+                userChoice = MinDate.Date;
+            }
+
+
             if (userChoice > GetHigherDate())
             {
                 await FlashErrorMessage();
             }
             else
             {
-                StartDate = userChoice;
+                StartDate = userChoice.Date;
                 Update();
             }
         }
 
         async void EndChanged(DateTime userChoice)
         {
+            //workaround for #562
+            if (userChoice < StartDate)
+            {
+                EndDate = StartDate.Date;
+                userChoice = StartDate.Date;
+            }
+
+
             if (userChoice < GetLowerDate())
             {
                 await FlashErrorMessage();
             }
             else
             {
-                EndDate = userChoice;
+                EndDate = userChoice.Date;
                 Update();
             }
         }

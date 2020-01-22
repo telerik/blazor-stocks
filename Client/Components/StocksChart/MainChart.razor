@@ -49,7 +49,8 @@
     [Parameter] public ChartSeriesType MainChartType { get; set; }
     [Parameter] public List<StockIntervalDetails> ChartData { get; set; }
     [Parameter] public int LabelStep { get; set; }
-    [Parameter] public IntervalFilter IntervalFilter { get; set; } = new IntervalFilter() { Duration = Constants.MS_1_HOUR, Interval = new Interval { Step = 60, Unit = ChartCategoryAxisBaseUnit.Minutes } };
+    [Parameter] public IntervalFilter IntervalFilter { get; set; }
+
     [CascadingParameter] public Currency SelectedCurrency { get; set; }
     TelerikChart ChartRef { get; set; }
     int LastViewPortWidth { get; set; }
@@ -64,6 +65,10 @@
 
     protected override async Task OnParametersSetAsync()
     {
+        if(IntervalFilter == null)
+        {
+            IntervalFilter = GetDefaultFilter();
+        }
         await AdjustLabelStep(null);
         await base.OnParametersSetAsync();
     }
@@ -91,8 +96,9 @@
         if (ChartData.Any())
         {
             var chartDataTimeRangeInMs = (long)(ChartData.Last().Date - ChartData.First().Date).TotalMilliseconds;
+            long currDur = (IntervalFilter != null && IntervalFilter.Duration != 0) ? IntervalFilter.Duration : Constants.MS_1_HOUR;
             int currStep = (int)(chartDataTimeRangeInMs / IntervalFilter.Duration / Constants.MaxLabelStepsInStocksChart);
-            if(WindowWidth == null)
+            if (WindowWidth == null)
             {
                 BrowserWindowSize size = await listener.GetBrowserWindowSize();
                 WindowWidth = size.Width;
@@ -110,5 +116,14 @@
     public void Dispose()
     {
         listener.OnResized -= ResizeChart;
+    }
+
+    IntervalFilter GetDefaultFilter()
+    {
+        return new IntervalFilter()
+        { 
+            Duration = Constants.MS_1_HOUR, 
+            Interval = new Interval { Step = 60, Unit = ChartCategoryAxisBaseUnit.Minutes } 
+        };
     }
 }

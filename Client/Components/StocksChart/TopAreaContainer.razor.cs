@@ -15,8 +15,8 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
         [Inject] internal StocksListService stocksService { get; set; }
         [Parameter] public Stock SelectedStock { get; set; }
 
-        public DateTime MinDate { get; set; } = DateTime.Now.AddMonths(-2).Date;
-        public DateTime MaxDate { get; set; } = DateTime.Now.Date;
+        public DateTime MinDate { get; set; } = Constants.GetMinDate();
+        public DateTime MaxDate { get; set; } = Constants.GetMaxDate();
 
         //parameters
         List<StockIntervalDetails> CurrentChartData { get; set; }

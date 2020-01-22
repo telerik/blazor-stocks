@@ -1,4 +1,6 @@
-﻿namespace BlazorFinancePortfolio.Helpers
+﻿using System;
+
+namespace BlazorFinancePortfolio.Helpers
 {
     public static class Constants
     {
@@ -14,5 +16,15 @@
         public const int MS_1_WEEK = MS_1_DAY * 7;
 
         public const int MaxLabelStepsInStocksChart = 15;
+
+        public static DateTime GetMaxDate()
+        {
+            return DateTime.Now.Date;
+        }
+
+        public static DateTime GetMinDate()
+        {
+            return GetMaxDate().AddMonths(-2).Date;
+        }
     }
 }
