@@ -1,4 +1,4 @@
-const serviceWorkerFileName = '/blazor-stocks-portfolio/ServiceWorker.js';
+const serviceWorkerFileName = '/blazor-financial-portfolio/ServiceWorker.js';
 const swInstalledEvent = 'installed';
 const staticCachePrefix = 'blazor-cache-v';
 const updateAlertMessage = 'Update available. Reload the page when convenient.';

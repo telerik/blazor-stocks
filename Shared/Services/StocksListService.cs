@@ -1,4 +1,5 @@
-﻿using BlazorFinancePortfolio.Models;
+﻿using BlazorFinancePortfolio.Helpers;
+using BlazorFinancePortfolio.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,17 @@ namespace BlazorFinancePortfolio.Services
 
         public List<StockIntervalDetails> GenerateStockIntervals(Stock stock, int intervalInMinutes, DateTime start, DateTime end)
         {
+            DateTime minStart = Constants.GetMinDate();
+            DateTime maxEnd = Constants.GetMaxDate();
+            if(start < minStart)
+            {
+                start = minStart;
+            }
+            if(end > maxEnd)
+            {
+                end = maxEnd;
+            }
+
             var stocks = new List<StockIntervalDetails>
             {
                 new StockIntervalDetails

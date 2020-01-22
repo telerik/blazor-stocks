@@ -599,6 +599,12 @@ td:last-of-type {
     color: rgba($white, .5);
 }
 
+.stocks-grid .k-grid-table td:first-child {
+    vertical-align:middle;
+    text-align: left;
+    padding-left: 1rem;
+}
+
 .stocks-grid .k-grid td:last-child {
     padding-left: 0;
     padding-right: 0;
@@ -654,4 +660,9 @@ stocks-grid .k-grid .k-grid-header th.k-header {
     .profile-wrapper div:last-child {
         display: none
     }
+}
+
+/* workaround for an issue with the Today buttons on the pickers (#713). Also, they are not very useful in this app because the data comes up only until Today */
+.k-today {
+    visibility: hidden;
 }

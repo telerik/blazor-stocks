@@ -7,10 +7,10 @@
         {
             <TelerikDropDownList Data="@UncategorizedStocks"
                                  Value="@SelectedValue"
-                                 ValueChanged="@((string v) =>OnAdd(v))"
+                                 OnChange="OnAdd"
                                  TextField="Name"
                                  ValueField="Symbol"
-                                 DefaultItem="@DefailtUncategorizedStock"
+                                 DefaultText="+ Add new stock"
                                  PopupWidth="270px"
                                  Width="165px"
                                  Class="ddl-no-bg">
@@ -42,7 +42,7 @@
                 <Template>
                     @{
                         var stock = context as Stock;
-                        <strong>@(SelectedCurrency?.Sign + stock.Price)</strong>
+                        <strong>@(SelectedCurrency?.Sign + stock.Price * SelectedCurrency.Multiplier)</strong>
                     }
                 </Template>
             </GridColumn>

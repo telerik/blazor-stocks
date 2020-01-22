@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using System.Threading;
 using BlazorFinancePortfolio.Models;
 using BlazorFinancePortfolio.Services;
-using BlazorFinancePortfolio.Helpers;
 using Microsoft.JSInterop;
+using BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Pages
 {
     public partial class RealTime : IDisposable
     {
         [Inject] RealTimeDataService RealTimeDataService { get; set; }
-        [Inject] IJSRuntime JSRuntime { get; set; }
+        [Inject] ResizeListener listener { get; set; }
         [CascadingParameter] public Currency SelectedCurrency { get; set; }
         bool ShowAllColumns { get; set; }
         int LoadDataInterval { get; set; } = 1500;
@@ -22,13 +22,24 @@ namespace BlazorFinancePortfolio.Client.Pages
         CancellationTokenSource CancelToken;
         Random rnd = new Random();
 
+        int LastViewPortWidth { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
-            await ToggleColumns();
-            WindowResizeDispatcher.WindowResize += ToggleColumns;
+            await ToggleColumns(null);
             CancelToken = new CancellationTokenSource();
             GridData = await RealTimeDataService.GetInitialData(SelectedCurrency.Symbol);
             await IntervalDataUpdate();
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                listener.OnResized += WindowResizeHandler;
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         async Task IntervalDataUpdate()
@@ -49,14 +60,25 @@ namespace BlazorFinancePortfolio.Client.Pages
             }
         }
 
-        protected async Task ToggleColumns()
+        async void WindowResizeHandler(object _, BrowserWindowSize window)
         {
-            if (WindowResizeDispatcher.WindowWidth == null)
+            if (LastViewPortWidth != window.Width)
             {
-                WindowResizeDispatcher.WindowWidth = await JSRuntime.InvokeAsync<int>("getWindowWidth");
+                LastViewPortWidth = window.Width;
+                await ToggleColumns(window.Width);
+            }
+        }
+
+        protected async Task ToggleColumns(int? windowWidth)
+        {
+            if (windowWidth == null)
+            {
+                BrowserWindowSize currSize = await listener.GetBrowserWindowSize();
+                windowWidth = currSize.Width;
+                LastViewPortWidth = windowWidth.Value;
             }
 
-            if (WindowResizeDispatcher.WindowWidth < 992)
+            if (windowWidth < 992)
             {
                 ShowAllColumns = false;
             }
@@ -69,7 +91,7 @@ namespace BlazorFinancePortfolio.Client.Pages
 
         public void Dispose()
         {
-            WindowResizeDispatcher.WindowResize -= ToggleColumns;
+            listener.OnResized -= WindowResizeHandler;
             StopTimer();
         }
 

@@ -1,4 +1,5 @@
 using BlazorFinancePortfolio.Services;
+using BlazorSize;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +13,7 @@ namespace BlazorFinancePortfolio.Client
             services.AddScoped<CurrenciesService>();
             services.AddScoped<StocksListService>();
             services.AddScoped<RealTimeDataService>();
+            services.AddScoped<ResizeListener>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

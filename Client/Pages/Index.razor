@@ -42,17 +42,5 @@
 @code {
     Stock SelectedStock { get; set; }
     bool ShowChart { get; set; } = true;
-
-    [CascadingParameter] public bool ShowNavigation { get; set; }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-        {
-            ShowNavigation = true;
-            StateHasChanged();
-        }
-        base.OnAfterRender(firstRender);
-    }
 }
 
