@@ -16,6 +16,17 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         [Inject] StocksListService StocksListService { get; set; }
         [Inject] ResizeListener listener { get; set; }
         [Parameter] public Stock SelectedStock { get; set; }
+        IEnumerable<Stock> SelectedStocks
+        {
+            get
+            {
+                if (SelectedStock != null)
+                {
+                    return new List<Stock>() { SelectedStock };
+                }
+                return Enumerable.Empty<Stock>();
+            }
+        }
         [Parameter] public EventCallback<Stock> SelectedStockChanged { get; set; }
         [Parameter] public List<Stock> Data { get; set; }
         [Parameter] public List<Stock> UncategorizedStocks { get; set; }
@@ -27,13 +38,10 @@ namespace BlazorFinancePortfolio.Client.Components.StocksGrid
         bool LargerThanTablet { get; set; }
         int LastViewPortWidth { get; set; }
 
-        async Task OnSelect(Stock currStock)
+        async Task OnSelect(IEnumerable<Stock> selectedStocks)
         {
-            if (!string.Equals(currStock.Symbol, SelectedStock?.Symbol))
-            {
-                SelectedStock = currStock;
-                await SelectedStockChanged.InvokeAsync(SelectedStock);
-            }
+            SelectedStock = selectedStocks.FirstOrDefault();
+            await SelectedStockChanged.InvokeAsync(SelectedStock);
         }
 
         async Task OnAdd(object selectedSymbol)
