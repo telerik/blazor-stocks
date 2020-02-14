@@ -5,12 +5,12 @@ const swInstallEvent = 'install';
 const swInstalledEvent = 'installed';
 const swActivateEvent = 'activate';
 const staticCachePrefix = 'blazor-cache-v';
-const staticCacheName = 'blazor-cache-v24';
+const staticCacheName = 'blazor-cache-v25';
 const requiredFiles = [
 "/blazor-financial-portfolio/_framework/blazor.boot.json",
 "/blazor-financial-portfolio/_framework/blazor.webassembly.js",
-"/blazor-financial-portfolio/_framework/wasm/mono.js",
-"/blazor-financial-portfolio/_framework/wasm/mono.wasm",
+"/blazor-financial-portfolio/_framework/wasm/dotnet.js",
+"/blazor-financial-portfolio/_framework/wasm/dotnet.wasm",
 "/blazor-financial-portfolio/_framework/_bin/BlazorFinancePortfolio.Client.dll",
 "/blazor-financial-portfolio/_framework/_bin/BlazorFinancePortfolio.Shared.dll",
 "/blazor-financial-portfolio/_framework/_bin/BlazorSize.dll",
@@ -20,10 +20,11 @@ const requiredFiles = [
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.AspNetCore.Components.Web.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Bcl.AsyncInterfaces.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.CSharp.dll",
+"/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Configuration.Abstractions.dll",
+"/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Configuration.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.DependencyInjection.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Logging.Abstractions.dll",
-"/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Options.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Primitives.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.JSInterop.dll",
 "/blazor-financial-portfolio/_framework/_bin/Mono.Security.dll",
@@ -60,6 +61,7 @@ const requiredFiles = [
 "/blazor-financial-portfolio/_framework/_bin/Telerik.DataSource.dll",
 "/blazor-financial-portfolio/_framework/_bin/WebAssembly.Bindings.dll",
 "/blazor-financial-portfolio/_framework/_bin/WebAssembly.Net.Http.dll",
+"/blazor-financial-portfolio/_framework/_bin/WebAssembly.Net.WebSockets.dll",
 "/blazor-financial-portfolio/css/bootstrap/bootstrap.min.css",
 "/blazor-financial-portfolio/css/bootstrap/bootstrap.min.css.map",
 "/blazor-financial-portfolio/css/styles.min.css",

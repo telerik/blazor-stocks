@@ -1,16 +1,24 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using BlazorFinancePortfolio.Services;
+using BlazorSize;
 
 namespace BlazorFinancePortfolio.Client
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("app");
+            builder.Services.AddTelerikBlazor();
+            builder.Services.AddScoped<CurrenciesService>();
+            builder.Services.AddScoped<StocksListService>();
+            builder.Services.AddScoped<RealTimeDataService>();
+            builder.Services.AddScoped<ResizeListener>();
 
-        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>
-            BlazorWebAssemblyHost.CreateDefaultBuilder()
-                .UseBlazorStartup<Startup>();
+            await builder.Build().RunAsync();
+        }
     }
 }
