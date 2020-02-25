@@ -8,7 +8,7 @@ using BlazorFinancePortfolio.Helpers;
 using BlazorFinancePortfolio.Services;
 using Telerik.Blazor.Components;
 using Microsoft.JSInterop;
-using BlazorSize;
+using BlazorPro.BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Pages
 {

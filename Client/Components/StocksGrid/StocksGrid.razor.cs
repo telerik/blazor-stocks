@@ -7,7 +7,7 @@ using BlazorFinancePortfolio.Models;
 using BlazorFinancePortfolio.Helpers;
 using BlazorFinancePortfolio.Services;
 using Microsoft.JSInterop;
-using BlazorSize;
+using BlazorPro.BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Components.StocksGrid
 {

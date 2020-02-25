@@ -10,7 +10,7 @@
     <ManifestShortName>My Stocks</ManifestShortName>
     <ManifestLongName>My Blazor Stocks PWA</ManifestLongName>
     <ServiceWorkerForce>true</ServiceWorkerForce>
-    <ServiceWorkerCacheVersion>25</ServiceWorkerCacheVersion>
+    <ServiceWorkerCacheVersion>26</ServiceWorkerCacheVersion>
     <ServiceWorkerRegisterInstallableType>installable-blazor</ServiceWorkerRegisterInstallableType>
     <ServiceWorkerBlazorAssembly>BlazorFinancePortfolio.Client</ServiceWorkerBlazorAssembly>
     <ServiceWorkerBlazorInstallMethod>InstallPwaPrompt</ServiceWorkerBlazorInstallMethod>
@@ -32,13 +32,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="BlazorSize" Version="1.0.3.1" />
+    <PackageReference Include="BlazorSize" Version="1.2.1" />
     <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.2.0-preview1.20073.1" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.2.0-preview1.20073.1" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.2.0-preview1.20073.1" PrivateAssets="all" />
-    <PackageReference Include="Telerik.UI.for.Blazor.Trial" Version="2.7.1" />
+    <PackageReference Include="Telerik.UI.for.Blazor.Trial" Version="2.8.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\BlazorFinancePortfolio.Shared.csproj" />

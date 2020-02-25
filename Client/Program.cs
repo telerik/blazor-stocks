@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using BlazorFinancePortfolio.Services;
-using BlazorSize;
+using BlazorPro.BlazorSize;
 
 namespace BlazorFinancePortfolio.Client
 {
@@ -16,7 +16,12 @@ namespace BlazorFinancePortfolio.Client
             builder.Services.AddScoped<CurrenciesService>();
             builder.Services.AddScoped<StocksListService>();
             builder.Services.AddScoped<RealTimeDataService>();
-            builder.Services.AddScoped<ResizeListener>();
+            builder.Services.AddResizeListener(options =>
+                                        {
+                                            options.ReportRate = 300;
+                                            options.EnableLogging = true;
+                                            options.SuppressInitEvent = true;
+                                        });
 
             await builder.Build().RunAsync();
         }

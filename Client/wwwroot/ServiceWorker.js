@@ -5,7 +5,7 @@ const swInstallEvent = 'install';
 const swInstalledEvent = 'installed';
 const swActivateEvent = 'activate';
 const staticCachePrefix = 'blazor-cache-v';
-const staticCacheName = 'blazor-cache-v25';
+const staticCacheName = 'blazor-cache-v26';
 const requiredFiles = [
 "/blazor-financial-portfolio/_framework/blazor.boot.json",
 "/blazor-financial-portfolio/_framework/blazor.webassembly.js",
@@ -13,7 +13,7 @@ const requiredFiles = [
 "/blazor-financial-portfolio/_framework/wasm/dotnet.wasm",
 "/blazor-financial-portfolio/_framework/_bin/BlazorFinancePortfolio.Client.dll",
 "/blazor-financial-portfolio/_framework/_bin/BlazorFinancePortfolio.Shared.dll",
-"/blazor-financial-portfolio/_framework/_bin/BlazorSize.dll",
+"/blazor-financial-portfolio/_framework/_bin/BlazorPro.BlazorSize.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.AspNetCore.Blazor.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.AspNetCore.Components.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.AspNetCore.Components.Forms.dll",
@@ -25,6 +25,7 @@ const requiredFiles = [
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.DependencyInjection.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Logging.Abstractions.dll",
+"/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Options.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.Extensions.Primitives.dll",
 "/blazor-financial-portfolio/_framework/_bin/Microsoft.JSInterop.dll",
 "/blazor-financial-portfolio/_framework/_bin/Mono.Security.dll",

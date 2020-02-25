@@ -7,7 +7,7 @@ using System.Threading;
 using BlazorFinancePortfolio.Models;
 using BlazorFinancePortfolio.Services;
 using Microsoft.JSInterop;
-using BlazorSize;
+using BlazorPro.BlazorSize;
 
 namespace BlazorFinancePortfolio.Client.Pages
 {
