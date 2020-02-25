@@ -18,8 +18,8 @@ namespace BlazorFinancePortfolio.Client
             builder.Services.AddScoped<RealTimeDataService>();
             builder.Services.AddResizeListener(options =>
                                         {
-                                            options.ReportRate = 300;
-                                            options.EnableLogging = true;
+                                            options.ReportRate = 200;
+                                            options.EnableLogging = false;
                                             options.SuppressInitEvent = true;
                                         });
 
