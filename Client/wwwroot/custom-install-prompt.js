@@ -24,6 +24,9 @@ window.addEventListener('beforeinstallprompt', function (e) {
     showAddToHomeScreen();
 });
 
+// Prompt when the PWA has been installed but a new version is available
+// Code based on the Blazor.PWA.MSBuild package by SQL-MisterMagoo
+// Read more at https://github.com/SQL-MisterMagoo/Blazor.PWA.MSBuild/blob/master/LICENSE.txt
 window.updateAvailable = new Promise(function (resolve, reject) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('service-worker.js')
@@ -52,6 +55,7 @@ window.updateAvailable = new Promise(function (resolve, reject) {
 window['updateAvailable']
     .then(isAvailable => {
         if (isAvailable) {
+            // TODO: Consider adding your own app UI for this as well in a fashion similar to the showAddToHomeScreen() method
             alert('Update available. Reload the page when convenient.');
         }
     });
