@@ -104,7 +104,7 @@
     static Action ml;
 
     [JSInvokable("InstallPwaPrompt")]
-    //a named method so that it is easy to call from JS Interop, used in the config in the .csproj file
+    //a named method so that it is easy to call from JS Interop
     public static Task InstallPwaPrompt()
     {
         Installable = true;
@@ -115,6 +115,6 @@
     async void InstallClicked(MouseEventArgs args)
     {
         Installable = false;
-        await JSRuntime.InvokeAsync<object>("BlazorPWA.installPWA");//this name comes from the nuget package that generates the pwa code, don't change it unless you change the generated code
+        await JSRuntime.InvokeAsync<object>("OnPwaInstallClick");
     }
 }
