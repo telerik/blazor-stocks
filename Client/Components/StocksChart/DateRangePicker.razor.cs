@@ -50,14 +50,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
 
         async void StartChanged(DateTime userChoice)
         {
-            //workaround for #562
-            if(userChoice < MinDate)
-            {
-                StartDate = MinDate.Date;
-                userChoice = MinDate.Date;
-            }
-
-
             if (userChoice > GetHigherDate())
             {
                 await FlashErrorMessage();
@@ -71,14 +63,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
 
         async void EndChanged(DateTime userChoice)
         {
-            //workaround for #562
-            if (userChoice < StartDate)
-            {
-                EndDate = StartDate.Date;
-                userChoice = StartDate.Date;
-            }
-
-
             if (userChoice < GetLowerDate())
             {
                 await FlashErrorMessage();
