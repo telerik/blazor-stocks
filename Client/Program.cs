@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Blazor.Hosting;
+﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using BlazorFinancePortfolio.Services;
@@ -12,6 +12,7 @@ namespace BlazorFinancePortfolio.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+            builder.Services.AddBaseAddressHttpClient();
             builder.Services.AddTelerikBlazor();
             builder.Services.AddScoped<CurrenciesService>();
             builder.Services.AddScoped<StocksListService>();
