@@ -23,3 +23,35 @@ window.addEventListener('beforeinstallprompt', function (e) {
     // Show custom installation prompt (which will trigger the built-in one, of course, when confirmed by the user)
     showAddToHomeScreen();
 });
+
+window.updateAvailable = new Promise(function (resolve, reject) {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(function (registration) {
+                console.info('Registration successful, scope is:', registration.scope);
+                registration.onupdatefound = () => {
+                    const installingWorker = registration.installing;
+                    installingWorker.onstatechange = () => {
+                        switch (installingWorker.state) {
+                            case 'installed':
+                                if (navigator.serviceWorker.controller) {
+                                    resolve(true);
+                                } else {
+                                    resolve(false);
+                                }
+                                break;
+                            default:
+                        }
+                    };
+                };
+            })
+            .catch(error =>
+                console.info('Service worker registration failed, error:', error));
+    }
+});
+window['updateAvailable']
+    .then(isAvailable => {
+        if (isAvailable) {
+            alert('Update available. Reload the page when convenient.');
+        }
+    });
