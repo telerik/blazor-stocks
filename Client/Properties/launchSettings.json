@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:65065/blazor-financial-portfolio/",
-      "sslPort": 44340
+      "applicationUrl": "http://localhost:54402/blazor-financial-portfolio/",
+      "sslPort": 44364
     }
   },
   "profiles": {
@@ -15,13 +15,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BlazorFinancePortfolio.Client": {
+    "BlazorFinancePortfolio": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001/blazor-financial-portfolio/;http://localhost:5000/blazor-financial-portfolio/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:5001/blazor-financial-portfolio/;http://localhost:5000/blazor-financial-portfolio/"
+      }
     }
   }
 }
