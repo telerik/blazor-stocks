@@ -1,10 +1,10 @@
 # Blazor PWA App - Stocks Portfolio 
 
-This sample application demonstrates one way to implement a PWA ([Progressive Web Application](https://developers.google.com/web/progressive-web-apps)) functionality in a Blazor WASM app. It is live at https://demos.telerik.com/blazor-financial-portfolio
+This sample application demonstrates one way to implement a PWA ([Progressive Web Application](https://developers.google.com/web/progressive-web-apps)) functionality in a Blazor WASM app. It is live at https://demos.telerik.com/blazor-financial-portfolio.
 
-You may want to review the MSDN article on using the PWA template and working with PWAs in general: https://docs.microsoft.com/en-us/aspnet/core/blazor/progressive-web-app
+You may want to review the MSDN article on using the PWA template and working with PWAs in general: https://docs.microsoft.com/en-us/aspnet/core/blazor/progressive-web-app.
 
-To get the PWA functionality working while testing, you need a "valid" SSL certificate, and the first example from the following Microsoft article can help you generate one for your local machine name, so you can publish the app and test its behavior while developing: https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps#examples
+To get the PWA functionality working while testing, you need a "valid" SSL certificate, and the first example from the following Microsoft article can help you generate one for your local machine name, so you can publish the app and test its behavior while developing: https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps#examples.
 
 ## In This App
 
