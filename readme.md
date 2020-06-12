@@ -8,6 +8,8 @@ To get the PWA functionality working while testing, you need a "valid" SSL certi
 
 ## In This App
 
+The UI is built mostly with the [Telerik Blazor components](https://www.telerik.com/blazor-ui).
+
 The SASS styles are built to CSS through the [WebCopmiler package by madskristensen ](https://github.com/madskristensen/WebCompiler), then a build task in the `csproj` file copies the output to the `wwwroot` folder. This requires that you build through Visual Studio, a command-line build may throw an exception like `Access to the path '7z.dll' is denied`, depending on the machine setup and permissions.
 
 Most of the layout uses media queries and bootstrap to be responsive, some additional logic related to the viewport size is implemented through the [BlazorSize package by EdCharbeneau](https://github.com/EdCharbeneau/BlazorSize).
