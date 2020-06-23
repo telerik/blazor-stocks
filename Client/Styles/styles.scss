@@ -588,7 +588,7 @@ td:last-of-type {
 }
 /* end real-time data */
 
-/* drpdowns background */
+/* dropdowns background */
 
 .ddl-no-bg.k-dropdown .k-dropdown-wrap {
     background-color: transparent;
@@ -626,6 +626,10 @@ stocks-grid .k-grid .k-grid-header th.k-header {
     }
 }
 
+/* date range picker */
+.daterange-input-wrap .k-floating-label-container {
+    width: 45%;
+}
 /* responsive layouts */
 @media screen and (max-width: 992px) {
     .daterange-input-wrap, .scale-blocks, .scale-wrap, .user-data {

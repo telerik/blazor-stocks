@@ -36,7 +36,6 @@
     </ItemGroup>
     <ItemGroup>
       <None Include="Components\GridSwitcher.razor" />
-      <None Include="Components\StocksChart\DateRangePicker.razor" />
       <None Include="Components\StocksChart\MainChart.razor" />
       <None Include="Components\StocksChart\TopAreaContainer.razor" />
       <None Include="Components\StocksGrid\ConfirmButton.razor" />
