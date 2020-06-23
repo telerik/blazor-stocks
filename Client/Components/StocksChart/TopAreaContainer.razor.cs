@@ -7,6 +7,7 @@ using BlazorFinancePortfolio.Models;
 using BlazorFinancePortfolio.Helpers;
 using BlazorFinancePortfolio.Services;
 using Telerik.Blazor;
+using Telerik.Blazor.Components;
 
 namespace BlazorFinancePortfolio.Client.Components.StocksChart
 {
@@ -64,11 +65,33 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
             base.OnParametersSet();
         }
 
-        void DatesChanged(Tuple<DateTime, DateTime> dates)
+        async Task StartValueChangedHandler(DateTime currStart)
         {
-            Start = dates.Item1;
-            End = dates.Item2;
+            Start = currStart;
+            if(End < Start)
+            {
+                End = Start;
+            }
+            DatesChanged();
+        }
 
+        async Task EndValueChangedHandler(DateTime currEnd)
+        {
+            End = currEnd;
+
+            if (currEnd != default(DateTime))
+            {
+                End = currEnd;
+            }
+            else
+            {
+                End = Start;
+            }
+            DatesChanged();
+        }
+
+        void DatesChanged()
+        {
             var dateRangeIntervalInMs = (long)(End - Start).TotalMilliseconds;
 
             ActiveTimeFilterDuration = null;
@@ -77,8 +100,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
             SetDefaultInterval(dateRangeIntervalInMs);
 
             FilterCurrentChartData(SelectedFilterInterval);
-
-            StateHasChanged();
         }
 
         void OnTimeFilterClick(long FilterDuration)
@@ -97,8 +118,6 @@ namespace BlazorFinancePortfolio.Client.Components.StocksChart
             SetDefaultInterval(FilterDuration);
 
             FilterCurrentChartData(SelectedFilterInterval);
-
-            StateHasChanged();
         }
 
         void FilterCurrentChartData(long intervalInMilliseconds)
