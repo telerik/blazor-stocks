@@ -28,6 +28,7 @@ namespace BlazorFinancePortfolio.Client.Pages
         bool ChartLabelsVisible { get; set; } = true;
 
         int LastViewPortWidth { get; set; }
+        DateTime LastDataRequestTime { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -36,9 +37,8 @@ namespace BlazorFinancePortfolio.Client.Pages
                 IsProfileVisible = true;
             }
 
-            Stocks = await StocksListService.GetStocks(true);
             await ResizeChart(null);
-
+            
             if (IsProfileVisible)
             {
                 await _js.InvokeVoidAsync("toggleScroll", false);
@@ -55,6 +55,25 @@ namespace BlazorFinancePortfolio.Client.Pages
             }
 
             await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            if (IsProfileVisible && ShouldRequestData())
+            {
+                Stocks = await StocksListService.GetStocks(true);
+                LastDataRequestTime = DateTime.Now;
+            }
+        }
+
+        bool ShouldRequestData()
+        {
+            if(LastDataRequestTime == null)
+            {
+                return true;
+            }
+            DateTime currTime = DateTime.Now;
+            return (currTime - LastDataRequestTime).TotalSeconds > 10;
         }
 
         async void CloseProfile()
