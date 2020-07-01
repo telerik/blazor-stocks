@@ -73,7 +73,7 @@ namespace BlazorFinancePortfolio.Client.Pages
                 return true;
             }
             DateTime currTime = DateTime.Now;
-            return (currTime - LastDataRequestTime).TotalSeconds > 10;
+            return (currTime - LastDataRequestTime).TotalSeconds > 3;
         }
 
         async void CloseProfile()
