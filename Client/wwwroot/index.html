@@ -40,6 +40,12 @@
     <script src="_content/BlazorPro.BlazorSize/blazorSize.min.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
     <script src="custom-install-prompt.js"></script>
+    <script>
+        function toggleScroll(shouldScroll) {
+            var scrollValue = shouldScroll ? "auto" : "hidden";
+            document.body.style.overflowY = scrollValue;
+        }
+    </script>
 </body>
 
 </html>

@@ -15,6 +15,7 @@ namespace BlazorFinancePortfolio.Client.Pages
     public partial class UserProfile : IDisposable
     {
         [Inject] NavigationManager NavManager { get; set; }
+        [Inject] IJSRuntime _js { get; set; }
         [Inject] StocksListService StocksListService {get;set;}
         [Inject] ResizeListener listener { get; set; }
         [CascadingParameter] public Currency SelectedCurrency { get; set; }
@@ -38,6 +39,11 @@ namespace BlazorFinancePortfolio.Client.Pages
             Stocks = await StocksListService.GetStocks(true);
             await ResizeChart(null);
 
+            if (IsProfileVisible)
+            {
+                await _js.InvokeVoidAsync("toggleScroll", false);
+            }
+
             await base.OnInitializedAsync();
         }
 
@@ -53,6 +59,7 @@ namespace BlazorFinancePortfolio.Client.Pages
 
         async void CloseProfile()
         {
+            await _js.InvokeVoidAsync("toggleScroll", true);
             if (IsCurrentPageProfile())
             {
                 NavManager.NavigateTo("");

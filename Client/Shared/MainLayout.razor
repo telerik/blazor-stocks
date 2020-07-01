@@ -33,7 +33,7 @@
                     </a>
                 </div>
             </div>
-            <div @onclick="@( () => ProfileVisible = true )" class="profile-wrapper d-flex flex-column align-self-center"
+            <div @onclick="@ShowProfile" class="profile-wrapper d-flex flex-column align-self-center"
                  tabindex="0">
                 <div class="profile-image">
 
@@ -96,6 +96,12 @@
         Currencies = await currenciesService.GetCurrenciesAsync();
 
         SelectedCurrency = Currencies.FirstOrDefault();
+    }
+
+    async Task ShowProfile()
+    {
+        ProfileVisible = true;
+        await JSRuntime.InvokeVoidAsync("toggleScroll", false);
     }
 
     // PWA infrastructure
